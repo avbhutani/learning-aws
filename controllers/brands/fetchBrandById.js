@@ -1,14 +1,13 @@
 const AWS = require('aws-sdk')
 
 async function fetchBrandById(req,res) {
-    const brandID = req.params.id
-    console.log(brandID)
+    const id = req.params.id
     try {
         const dynamoDB = new AWS.DynamoDB.DocumentClient();
         const params = {
             TableName: 'brands',   // Replace with your table name
             Key: {
-              'brandID':  brandID      
+              'id':  id      
             }
           };
           const brand = dynamoDB.get(params, function (error, data) {

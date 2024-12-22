@@ -4,14 +4,15 @@ const { v4: uuidv4 } = require('uuid');
 async function updateBrand(req, res) {
     const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-    const brandID = req.params.id; // The brandID to update
-    const { brandName, brandWebsite, socialMediaAccounts } = req.body;
+    const id = req.params.id; // The id to update
+    const { email, brandName, brandWebsite, socialMediaAccounts } = req.body;
 
     const params = {
         TableName: 'brands',
-        Key: { brandID }, // Specify the key (partition key) for the item
+        Key: { id }, // Specify the key (partition key) for the item
         UpdateExpression: 'SET brandName = :brandName, brandWebsite = :brandWebsite, socialMediaAccounts = :socialMediaAccounts',
         ExpressionAttributeValues: {
+            ':email': email,
             ':brandName': brandName,
             ':brandWebsite': brandWebsite,
             ':socialMediaAccounts': socialMediaAccounts,

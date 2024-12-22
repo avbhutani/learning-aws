@@ -2,12 +2,12 @@ const AWS = require('aws-sdk')
 
 async function deleteBrand(req,res) {
     const dynamoDB = new AWS.DynamoDB.DocumentClient();
-    const brandID = req.params.id 
+    const id = req.params.id 
     try {
         const params = {
             TableName:'brands',
             Key: {
-                brandID
+                id
             }
         }
         await dynamoDB.delete(params).promise();
