@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk')
 
 async function fetchBrandById(req,res) {
-    const brandID = req.params.brandID
+    const brandID = req.params.id
     console.log(brandID)
     try {
         const dynamoDB = new AWS.DynamoDB.DocumentClient();
@@ -32,7 +32,13 @@ async function fetchBrandById(req,res) {
           });
 
     } catch (error) {
-        
+        res.status(500).send(
+            {
+                success:'false',
+                message:'Error Fetching the brand by ID',
+                error
+            }
+        )
     }
 }
 
