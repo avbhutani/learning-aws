@@ -15,7 +15,7 @@ async function createNewCreator(req, res) {
     try {
         const creator = {
             id:uuidv4(),
-            creatorEmail: reqBody.email,
+            email: reqBody.email,
             creatorImage: reqBody.creatorImage || null,
             creatorName: reqBody.creatorName || null,
             totalSubmissions: 0,

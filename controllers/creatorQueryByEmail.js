@@ -19,7 +19,15 @@ async function creatorQueryByEmail(req, res) {
     try {
         const data = await dynamoDB.query(params).promise();  // Using async/await for cleaner code
         console.log('Query results:', data.Items);
-        res.status(200).send(data.Items);
+        if(data.Items.length > 0)
+            return res.status(200).send(data.Items);
+        else 
+            return res.status(400).send(
+        {
+            success:'false',
+            message:'Creator with this Email does not exist!'
+        }
+        )
     } catch (err) {
         console.error('Error querying DynamoDB', err);
         res.status(500).send(err);

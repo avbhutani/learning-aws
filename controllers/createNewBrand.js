@@ -1,4 +1,4 @@
-const AWS = require('@aws-sdk/client-s3')
+const AWS = require('aws-sdk')
 const { v4: uuidv4 } = require('uuid'); 
 
 // Create a new brand with the credentials provided over the frontend 
@@ -8,14 +8,18 @@ const { v4: uuidv4 } = require('uuid');
 // all the data is typed checked before receiving it in the frontend.
 async function createNewBrand(req,res) {
     const dynamoDB = new AWS.DynamoDB.DocumentClient();
-    const {brandName,brandWebsite,socialMediaAccounts} = req.body
+    const {brandName,email,brandWebsite,socialMediaAccounts} = req.body
+    const brand = {
+        email: email,
+        brandName:brandName || null,
+        brandWebsite: brandWebsite || null,
+        socialMediaAccounts:socialMediaAccounts || []
+    }
     const params = {
         TableName:'brands',
         Item: {
-            'brandID':uuidv4(),
-            brandName,
-            brandWebsite,
-            socialMediaAccounts:[socialMediaAccounts]
+            'id':uuidv4(),
+            ...brand
         }
     }
 
