@@ -11,6 +11,7 @@ const checkEmail = require('./middlewares/checkEmail')
 const createNewCreator = require('./controllers/creators/createNewCreator')
 const creatorQueryByEmail = require('./controllers/creators/creatorQueryByEmail')
 const existingCreator = require('./middlewares/existingCreator')
+const brandQueryByEmail = require('./controllers/brands/brandQueryByEmail')
 
 require('dotenv').config()
 require('./config')
@@ -26,7 +27,7 @@ app.post('/brands',createNewBrand)
 app.get('/brands/:id?',checkForID,fetchBrandById)
 app.put('/brands/:id?',checkForID,updateBrand)
 app.delete('/brands/:id?',checkForID,deleteBrand)
-
+app.post('/brands/search',brandQueryByEmail)
 app.post('/creators',checkEmail,existingCreator,createNewCreator)
 app.post('/creators/search',creatorQueryByEmail)
 app.listen(process.env.PORT || 4000, ()=> {
