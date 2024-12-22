@@ -10,6 +10,7 @@ const checkForID = require('./middlewares/checkForID')
 const checkEmail = require('./middlewares/checkEmail')
 const createNewCreator = require('./controllers/createNewCreator')
 const creatorQueryByEmail = require('./controllers/creatorQueryByEmail')
+const existingCreator = require('./middlewares/existingCreator')
 
 require('dotenv').config()
 require('./config')
@@ -26,7 +27,7 @@ app.get('/brands/:id?',checkForID,fetchBrandById)
 app.put('/brands/:id?',checkForID,updateBrand)
 app.delete('/brands/:id?',checkForID,deleteBrand)
 
-app.post('/creators',checkEmail,createNewCreator)
+app.post('/creators',checkEmail,existingCreator,createNewCreator)
 app.post('/creators/search',creatorQueryByEmail)
 app.listen(process.env.PORT || 4000, ()=> {
     console.log(`Server is listening at ${process.env.PORT || 4000}`)

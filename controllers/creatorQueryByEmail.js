@@ -12,7 +12,8 @@ async function creatorQueryByEmail(req, res) {
         },
         ExpressionAttributeValues: {
             ':email': email  // Correct value placeholder
-        }  // Optional, specify attributes to retrieve
+        } 
+        // the projection can also be specified for restricted access.
     };
     
     try {
