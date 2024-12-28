@@ -14,6 +14,7 @@ const existingCreator = require('./middlewares/existingCreator')
 const brandQueryByEmail = require('./controllers/brands/brandQueryByEmail')
 const createDuel = require('./controllers/duel/createDuel')
 const fetchDuelById = require('./controllers/duel/fetchDuelById')
+const createBrandDuel = require('./controllers/brand-duel/createBrandDuel')
 
 require('dotenv').config()
 require('./config')
@@ -40,6 +41,9 @@ app.post('/creators/search',creatorQueryByEmail)
 app.post('/duel',createDuel)
 app.get('/duel/:id',fetchDuelById)
 
+
+// brand-duel updates
+app.post('/brands/duel',createBrandDuel)
 app.listen(process.env.PORT || 4000, ()=> {
     console.log(`Server is listening at ${process.env.PORT || 4000}`)
 })
