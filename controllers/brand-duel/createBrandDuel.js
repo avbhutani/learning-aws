@@ -17,7 +17,8 @@ async function createBrandDuel(req,res)
             Item: {
                 'brandId':brandId,
                 duelId
-            }
+            },
+            ConditionExpression:'attribute_not_exists(duelId) AND attribute_not_exists(creatorId)'
         }
         await dynamoDB.put(params).promise()
         res.status(200).send(

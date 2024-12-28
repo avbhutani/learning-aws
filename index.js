@@ -15,6 +15,7 @@ const brandQueryByEmail = require('./controllers/brands/brandQueryByEmail')
 const createDuel = require('./controllers/duel/createDuel')
 const fetchDuelById = require('./controllers/duel/fetchDuelById')
 const createBrandDuel = require('./controllers/brand-duel/createBrandDuel')
+const createDuelCreator = require('./controllers/duel-creator/createDuelCreator')
 
 require('dotenv').config()
 require('./config')
@@ -36,10 +37,10 @@ app.post('/brands/search',brandQueryByEmail)
 app.post('/creators',existingCreator,createNewCreator)
 app.post('/creators/search',creatorQueryByEmail)
 
-
 // duel routes
 app.post('/duel',createDuel)
 app.get('/duel/:id',fetchDuelById)
+app.post('/duel/creator',createDuelCreator)
 
 
 // brand-duel updates
