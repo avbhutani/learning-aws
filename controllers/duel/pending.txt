@@ -1,0 +1,3 @@
+1. Feature to Update, Delete and Read Duel By ID
+2. Will have to take care about rollbacks, what if one table is updated and the other is not.
+3. can use the AWS lambda along with the DynamoDB streams to update the table.

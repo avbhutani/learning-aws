@@ -10,7 +10,7 @@ async function createNewBrand(req,res) {
     const dynamoDB = new AWS.DynamoDB.DocumentClient();
     const {brandName,email,brandWebsite,socialMediaAccounts} = req.body
     const brand = {
-        email: email,
+        brandEmail: email,
         brandName:brandName || null,
         brandWebsite: brandWebsite || null,
         socialMediaAccounts:socialMediaAccounts || []
@@ -18,7 +18,7 @@ async function createNewBrand(req,res) {
     const params = {
         TableName:'brands',
         Item: {
-            'id':uuidv4(),
+            'brandId':uuidv4(),
             ...brand
         }
     }

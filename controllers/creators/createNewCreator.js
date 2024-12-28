@@ -5,7 +5,7 @@ async function createNewCreator(req, res) {
     const dynamoDB = new AWS.DynamoDB.DocumentClient();
     const reqBody = req.body;
     
-    if (!reqBody.email) {
+    if (!reqBody.creatorEmail) {
         return res.status(400).send({
             success: 'false',
             message: 'creatorEmail is required',
@@ -14,8 +14,8 @@ async function createNewCreator(req, res) {
 
     try {
         const creator = {
-            id:uuidv4(),
-            email: reqBody.email,
+            creatorId:uuidv4(),
+            creatorEmail: reqBody.creatorEmail,
             creatorImage: reqBody.creatorImage || null,
             creatorName: reqBody.creatorName || null,
             totalSubmissions: 0,
@@ -27,10 +27,10 @@ async function createNewCreator(req, res) {
         const params = {
             TableName: 'creators',
             Item: {
-                email:reqBody.email,
+                creatorEmail:reqBody.creatorEmail,
                 ...creator,
             },
-            ConditionExpression: 'attribute_not_exists(email)'
+            ConditionExpression: 'attribute_not_exists(creatorEmail)'
         }
         const savedCreator = await dynamoDB.put(params).promise()
         res.status(200).send({

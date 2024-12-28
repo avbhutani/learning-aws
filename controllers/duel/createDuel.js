@@ -1,9 +1,12 @@
 const AWS = require('aws-sdk')
 const { v4: uuidv4 } = require('uuid'); 
 async function duelCreation(body,expiryTime) {
-    const creatorID = body.creatorID
+
+
+    // fetch from the JWT token directly here.
+    const user = body.creatorID
     const duel = {
-        creatorID,
+        user,
         prizeAmount: body.prizeAmount || 0,
         submissionLimit: body.submissionLimit || 25,
         currentSubmissions: 0,

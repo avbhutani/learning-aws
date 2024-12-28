@@ -13,6 +13,7 @@ const creatorQueryByEmail = require('./controllers/creators/creatorQueryByEmail'
 const existingCreator = require('./middlewares/existingCreator')
 const brandQueryByEmail = require('./controllers/brands/brandQueryByEmail')
 const createDuel = require('./controllers/duel/createDuel')
+const fetchDuelById = require('./controllers/duel/fetchDuelById')
 
 require('dotenv').config()
 require('./config')
@@ -25,18 +26,19 @@ app.use(bodyParser.json())
 
 // brands routes
 app.post('/brands',createNewBrand)
-app.get('/brands/:id?',checkForID,fetchBrandById)
-app.put('/brands/:id?',checkForID,updateBrand)
-app.delete('/brands/:id?',checkForID,deleteBrand)
+app.get('/brands/:brandId?',checkForID,fetchBrandById)
+app.put('/brands/:brandId?',checkForID,updateBrand)
+app.delete('/brands/:brandId?',checkForID,deleteBrand)
 app.post('/brands/search',brandQueryByEmail)
 
 // creator routes
-app.post('/creators',checkEmail,existingCreator,createNewCreator)
+app.post('/creators',existingCreator,createNewCreator)
 app.post('/creators/search',creatorQueryByEmail)
 
 
 // duel routes
 app.post('/duel',createDuel)
+app.get('/duel/:id',fetchDuelById)
 
 app.listen(process.env.PORT || 4000, ()=> {
     console.log(`Server is listening at ${process.env.PORT || 4000}`)

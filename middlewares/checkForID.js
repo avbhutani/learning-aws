@@ -1,10 +1,10 @@
 async function checkForID(req,res,next) {
-    const id = req.params.id 
-    if(!id) {
+    const brandId = req.params.brandId 
+    if(!brandId) {
         return res.status(400).send(
             {
                 success:'false',
-                message:'Not a valid ID'
+                message:'Provide a Valid ID!'
             }
         )
     }

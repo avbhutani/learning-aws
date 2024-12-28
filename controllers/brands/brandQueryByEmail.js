@@ -7,7 +7,7 @@ async function brandQueryByEmail(req,res)
         
         const params = {
             TableName: 'brands',
-            IndexName: 'email-index',  // The name of your GSI
+            IndexName: 'brandEmail-index',  // The name of your GSI
             KeyConditionExpression: '#email = :email',  // Correct Key condition
             ExpressionAttributeNames: {
                 '#email': 'email'  // The GSI partition key
