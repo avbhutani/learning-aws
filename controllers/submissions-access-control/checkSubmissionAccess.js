@@ -13,13 +13,24 @@ async function checkSubmissionAccess(req,res) {
             }
         }
         const accessStats =  await dynamoDB.get(params).promise()
-        res.status(200).send(
+        if(!accessStats){
+            res.status(200).send(
             {
                 success:'true',
                 message:'Access Granted!',
                 accessStats
             }
         )
+        }
+        else {
+            res.status(403).send(
+                {
+                    success:'false',
+                    message:'Access Denied!'
+                }
+            )
+        }
+        
     }
     catch(error) {
         res.status(500).send(
