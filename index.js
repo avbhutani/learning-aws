@@ -17,6 +17,8 @@ const fetchDuelById = require('./controllers/duel/fetchDuelById')
 const createBrandDuel = require('./controllers/brand-duel/createBrandDuel')
 const createDuelCreator = require('./controllers/duel-creator/createDuelCreator')
 const createSubmission = require('./controllers/submissions/createSubmission')
+const createSubmissionAccess = require('./controllers/submissions-access-control/createSubmissionAccess')
+const checkSubmissionAccess = require('./controllers/submissions-access-control/checkSubmissionAccess')
 
 require('dotenv').config()
 require('./config')
@@ -45,7 +47,8 @@ app.post('/duel/:duelId/submission',createSubmission) // create a new submission
 app.get('/duel/:id',fetchDuelById)
 
 // submission Routes
-
+app.get('/submissions/:submissionId/access',checkSubmissionAccess)
+app.post('/submissions/:submissionId/access',createSubmissionAccess)
 // brand-duel updates
 app.post('/brands/duel',createBrandDuel)
 app.listen(process.env.PORT || 4000, ()=> {
