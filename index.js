@@ -19,6 +19,8 @@ const createDuelCreator = require('./controllers/duel-creator/createDuelCreator'
 const createSubmission = require('./controllers/submissions/createSubmission')
 const createSubmissionAccess = require('./controllers/submissions-access-control/createSubmissionAccess')
 const checkSubmissionAccess = require('./controllers/submissions-access-control/checkSubmissionAccess')
+const getDuelByBrand = require('./controllers/duel/getDuelByBrand')
+const createDuelWinner = require('./controllers/duel-winners/createDuelWinner')
 
 require('dotenv').config()
 require('./config')
@@ -45,12 +47,15 @@ app.post('/duels',createDuel)
 app.post('/duel/creator',createDuelCreator)
 app.post('/duel/:duelId/submission',createSubmission) // create a new submission for the duel
 app.get('/duel/:id',fetchDuelById)
-
+app.get('/duels/:brandId',getDuelByBrand)
+app.post('/duel/:duelId/winners',createDuelWinner)
 // submission Routes
 app.get('/submissions/:submissionId/access',checkSubmissionAccess)
 app.post('/submissions/:submissionId/access',createSubmissionAccess)
 // brand-duel updates
 app.post('/brands/duel',createBrandDuel)
+
+
 app.listen(process.env.PORT || 4000, ()=> {
     console.log(`Server is listening at ${process.env.PORT || 4000}`)
 })
