@@ -7,12 +7,15 @@ async function createSubmission(req,res) {
     const date = new Date()
     const duelId = req.params.duelId
     const {creatorId,paymentLink,review} = req.body // creatorId from JWT
-    
+
+    // Time the submission is created!
+    const createdAt = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear() + '-' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
     const newSubmission = {
         creatorId,
         duelId,
         paymentLink,
-        review
+        review,
+        createdAt
     }
 
     try {
