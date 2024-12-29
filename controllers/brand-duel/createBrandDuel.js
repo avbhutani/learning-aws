@@ -1,5 +1,9 @@
 async function createBrandDuel(req,res) 
 {
+
+    // redundant
+
+    
     // *** LAMBDA Function Trigger - Trigger brand-duel on duels table **** 
 
     // get the brandId as well as the duelId from the duels table.

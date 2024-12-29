@@ -1,5 +1,8 @@
 // Trigger for Duel Creator Table Updation 
 
+// user can only be called as register only if he/she uploads the file, 
+// and then only the function like this shall be triggered.
+
 async function createDuelCreator(req,res) {
     const AWS = require('aws-sdk')
     const dynamoDB = new AWS.DynamoDB.DocumentClient()
