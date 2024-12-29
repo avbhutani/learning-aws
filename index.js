@@ -16,6 +16,7 @@ const createDuel = require('./controllers/duel/createDuel')
 const fetchDuelById = require('./controllers/duel/fetchDuelById')
 const createBrandDuel = require('./controllers/brand-duel/createBrandDuel')
 const createDuelCreator = require('./controllers/duel-creator/createDuelCreator')
+const createSubmission = require('./controllers/submissions/createSubmission')
 
 require('dotenv').config()
 require('./config')
@@ -38,10 +39,12 @@ app.post('/creators',existingCreator,createNewCreator)
 app.post('/creators/search',creatorQueryByEmail)
 
 // duel routes
-app.post('/duel',createDuel)
-app.get('/duel/:id',fetchDuelById)
+app.post('/duels',createDuel)
 app.post('/duel/creator',createDuelCreator)
+app.post('/duel/:duelId/submission',createSubmission) // create a new submission for the duel
+app.get('/duel/:id',fetchDuelById)
 
+// submission Routes
 
 // brand-duel updates
 app.post('/brands/duel',createBrandDuel)
