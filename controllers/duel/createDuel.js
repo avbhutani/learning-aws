@@ -18,7 +18,7 @@ async function duelCreation(body,expiryTime) {
         contentExamples: body.contentExamples && body.contentExamples.length > 0 ? body.contentExamples : undefined, // Images
         usefulAssets: body.usefulAssets && body.usefulAssets.length > 0 ? body.usefulAssets : undefined, // Images
         currentStatus: 'active',  // can be only ['active','inactive']
-        endTime: expiryTime, // 
+        endTime: expiryTime, 
         currentWinners: 0
       };
       
@@ -40,7 +40,6 @@ async function createDuel(req,res) {
      The creator ID basically says the creator that is creating the particular duel.
     //     */ 
     //    const creatorID = req.body.creatorID // fetch it from JWT
-   
    
 
     try {

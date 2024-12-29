@@ -50,12 +50,14 @@ app.post('/duel/:duelId/submission',createSubmission) // create a new submission
 app.get('/duel/:id',fetchDuelById)
 app.get('/duels/:brandId',getDuelByBrand)
 app.post('/duel/:duelId/winners',createDuelWinner)
-app.get('/duel/:duelId/creators',getCreatorsOfDuel)
+app.get('/duel/:duelId/creators',getCreatorsOfDuel) // can get the creators for the particular duel
+
 // submission Routes
 app.get('/submissions/:submissionId/access',checkSubmissionAccess)
 app.post('/submissions/:submissionId/access',createSubmissionAccess)
 // brand-duel updates
-app.post('/brands/duel',createBrandDuel)
+// app.post('/brands/duel',createBrandDuel)
+// no need for this
 
 
 app.listen(process.env.PORT || 4000, ()=> {
