@@ -13,7 +13,7 @@ async function checkSubmissionAccess(req,res) {
             }
         }
         const accessStats =  await dynamoDB.get(params).promise()
-        if(!accessStats){
+        if(accessStats.Item){
             res.status(200).send(
             {
                 success:'true',
